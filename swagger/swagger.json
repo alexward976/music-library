@@ -5,7 +5,7 @@
     "description": "An API for storing songs and creating a personal playlist.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://music-library-72kl.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
