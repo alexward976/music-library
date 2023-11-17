@@ -1,0 +1,167 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Music Library API",
+    "description": "An API for storing songs and creating a personal playlist.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Test path",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/library/": {
+      "get": {
+        "description": "Get all songs in the library.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/library/{id}": {
+      "get": {
+        "description": "Get a song in the library by ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/library/add": {
+      "post": {
+        "description": "Add a new song to the library.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "Don't Stop Believin'"
+                },
+                "artist": {
+                  "example": "Journey"
+                },
+                "album": {
+                  "example": "Escape"
+                },
+                "duration": {
+                  "example": "4:11"
+                },
+                "release_year": {
+                  "example": "1981"
+                },
+                "single": {
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      }
+    },
+    "/library/update/{id}": {
+      "put": {
+        "description": "Update a song in the library.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "An Ocean, A River"
+                },
+                "artist": {
+                  "example": "Rose Avenue"
+                },
+                "album": {
+                  "example": "An Ocean, A River"
+                },
+                "duration": {
+                  "example": "4:16"
+                },
+                "release_year": {
+                  "example": "2022"
+                },
+                "single": {
+                  "example": true
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      }
+    },
+    "/library/delete/{id}": {
+      "delete": {
+        "description": "Delete a song in the library.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

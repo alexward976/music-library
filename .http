@@ -1,0 +1,39 @@
+###
+
+GET http://localhost:8080/ HTTP/1.1
+
+###
+
+GET http://localhost:8080/library HTTP/1.1
+
+###
+
+POST http://localhost:8080/library/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "test",
+    "artist": false,
+    "album": 40000,
+    "duration": "test",
+    "release_year": "test",
+    "single": false
+}
+
+###
+
+PUT http://localhost:8080/library/update/6556e1846c321ee4846deaae HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "test2",
+    "artist": "test3",
+    "album": "test2",
+    "duration": "test2",
+    "release_year": "test2",
+    "single": false
+}
+
+###
+
+DELETE http://localhost:8080/library/delete/6556e1846c321ee4846deaae HTTP/1.1
