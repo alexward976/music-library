@@ -37,3 +37,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8080/library/delete/6556e1846c321ee4846deaae HTTP/1.1
+
+###
+
+GET http://127.0.0.1:8080/auth/github HTTP/1.1

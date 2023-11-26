@@ -11,19 +11,9 @@
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "Test path",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/library/": {
       "get": {
-        "description": "Get all songs in the library.",
+        "description": "Gets all the songs in the music library. No user required.",
         "produces": [
           "application/json"
         ],
@@ -36,7 +26,7 @@
     },
     "/library/{id}": {
       "get": {
-        "description": "Get a song in the library by ID.",
+        "description": "Gets a song by ID. No user required.",
         "produces": [
           "application/json"
         ],
@@ -57,7 +47,7 @@
     },
     "/library/add": {
       "post": {
-        "description": "Add a new song to the library.",
+        "description": "Adds a song to the library. No user required.",
         "parameters": [
           {
             "name": "body",
@@ -75,7 +65,7 @@
                   "example": "Escape"
                 },
                 "duration": {
-                  "example": "4:11"
+                  "example": "4:10"
                 },
                 "release_year": {
                   "example": "1981"
@@ -99,7 +89,7 @@
     },
     "/library/update/{id}": {
       "put": {
-        "description": "Update a song in the library.",
+        "description": "Update a specific song in the library. No user required.",
         "parameters": [
           {
             "name": "id",
@@ -114,22 +104,22 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "An Ocean, A River"
+                  "example": "Bohemian Rhapsody"
                 },
                 "artist": {
-                  "example": "Rose Avenue"
+                  "example": "Queen"
                 },
                 "album": {
-                  "example": "An Ocean, A River"
+                  "example": "A Night at the Opera"
                 },
                 "duration": {
-                  "example": "4:16"
+                  "example": "5:55"
                 },
                 "release_year": {
-                  "example": "2022"
+                  "example": "1975"
                 },
                 "single": {
-                  "example": true
+                  "example": false
                 }
               }
             }
@@ -147,7 +137,7 @@
     },
     "/library/delete/{id}": {
       "delete": {
-        "description": "Delete a song in the library.",
+        "description": "Deletes a specific song from the library. No user required.",
         "parameters": [
           {
             "name": "id",
@@ -159,6 +149,139 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/playlist/": {
+      "get": {
+        "description": "Gets all the songs in the user's playlist. Must be logged in.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/playlist/{id}": {
+      "get": {
+        "description": "Gets a specific song in the user's playlist. Must be logged in.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/playlist/add": {
+      "post": {
+        "description": "Adds a song to the user's playlist. Must be logged in.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "Rocket Man"
+                },
+                "artist": {
+                  "example": "Elton John"
+                },
+                "album": {
+                  "example": "Honky Château"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      }
+    },
+    "/playlist/update/{id}": {
+      "put": {
+        "description": "Update a specific song in the user's playlist. Must be logged in.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "Piano Man"
+                },
+                "artist": {
+                  "example": "Billy Joel"
+                },
+                "album": {
+                  "example": "Piano Man"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      }
+    },
+    "/playlist/delete/{id}": {
+      "delete": {
+        "description": "Deletes a specific song from the uesr's playlist. Must be logged in.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
