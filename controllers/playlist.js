@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
     const songId = { _id: new ObjectId(req.params.id) }
-    const result = await mongodb.getDatabase().db().collection('playlist').find();
+    const result = await mongodb.getDatabase().db().collection('playlist').find(songId);
     result.toArray().then((song) => {
         res.status(200).json(song);
     })
