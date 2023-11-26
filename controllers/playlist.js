@@ -74,7 +74,7 @@ const updateSong = async (req, res) => {
 const deleteSong = async (req, res) => {
     const songId = { _id: new ObjectId(req.params.id) }
 
-    mongodb.getDatabase().db().collection('library').deleteOne(songId).then((result) => {
+    mongodb.getDatabase().db().collection('playlist').deleteOne(songId).then((result) => {
         res.status(200).json(result);
     })
 }
